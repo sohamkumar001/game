@@ -24,6 +24,13 @@ class Bird {
         this.y = H/2;
         this.v = 0;
         this.r = 15;
+
+        jump(){
+    this.v = JUMP;
+    jumpSound.currentTime = 0;
+    jumpSound.play();
+}
+
     }
 
     update(){
@@ -51,6 +58,17 @@ class Pipe {
         this.w = 60;
         this.top = Math.random()*(H-PIPE_GAP-100)+50;
         this.passed=false;
+        
+if(!this.passed && this.x < bird.x){
+    score++;
+    document.getElementById("score").innerText=score;
+
+    scoreSound.currentTime = 0;
+    scoreSound.play();
+
+    this.passed=true;
+}
+
     }
 
     update(){
@@ -98,6 +116,17 @@ function endGame(){
     running = false;
     document.getElementById("finalScore").innerText=score;
     document.getElementById("gameOver").style.display="block";
+
+    function endGame(){
+    running = false;
+
+    hitSound.currentTime = 0;
+    hitSound.play();
+
+    document.getElementById("finalScore").innerText=score;
+    document.getElementById("gameOver").style.display="block";
+}
+
 }
 
 let lastPipe = 0;
@@ -140,4 +169,5 @@ canvas.addEventListener("touchstart", (e)=>{
 });
 
 startGame();
+
 
