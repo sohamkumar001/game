@@ -31,8 +31,6 @@ class Bird {
     jumpSound.play();
 }
 
-    }
-
     update(){
         this.v += GRAVITY;
         this.y += this.v;
@@ -169,5 +167,6 @@ canvas.addEventListener("touchstart", (e)=>{
 });
 
 startGame();
+
 
 
