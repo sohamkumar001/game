@@ -1,50 +1,98 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-    background:#111;
+    background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
     display:flex;
     justify-content:center;
     align-items:center;
     height:100vh;
     overflow:hidden;
-    font-family:Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color:white;
 }
 
+/* Added a subtle float animation to the canvas */
 canvas {
-    background:#4ec0ca;
-    border-radius:12px;
-    box-shadow:0 0 40px rgba(0,0,0,0.6);
-    width:90vw;
-    max-width:420px;
-    height:auto;
+    background: linear-gradient(to bottom, #4ec0ca 0%, #d2f4f7 100%);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    width: 90vw;
+    max-width: 420px;
     aspect-ratio: 2 / 3;
+    border: 4px solid rgba(255,255,255,0.1);
+    transition: transform 0.3s ease;
 }
 
 #score {
     position:absolute;
-    top:20px;
-    font-size:42px;
-    font-weight:bold;
-    text-shadow:2px 2px 0 black;
+    top:40px;
+    font-size:64px;
+    font-weight:900;
+    text-shadow: 3px 3px 0px #000, 6px 6px 20px rgba(0,0,0,0.5);
+    z-index: 10;
+    animation: pulse 2s infinite;
 }
 
 #gameOver {
     position:absolute;
     display:none;
-    background:rgba(0,0,0,0.8);
-    padding:20px;
-    border-radius:12px;
-    text-align:center;
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(10px); /* Modern blur effect */
+    padding: 30px 50px;
+    border-radius: 20px;
+    text-align: center;
+    border: 2px solid #ff9000;
+    box-shadow: 0 0 30px rgba(255, 144, 0, 0.3);
+    z-index: 20;
+    /* Animation for appearing */
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#gameOver h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #ff4444;
+}
+
+#challengeNote {
+    margin-top: 15px;
+    font-style: italic;
+    font-size: 14px;
+    color: #aaa;
+    line-height: 1.4;
 }
 
 button {
-    margin-top:10px;
-    padding:10px 20px;
-    font-size:18px;
-    border:none;
-    border-radius:8px;
-    background:#ff9000;
-    color:white;
-    cursor:pointer;
+    margin-top: 20px;
+    padding: 12px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #ff9000, #ff5e00);
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(255, 144, 0, 0.4);
+}
+
+button:hover {
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 144, 0, 0.6);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Animations */
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
